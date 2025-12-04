@@ -3,8 +3,276 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Restez en mouvement</title>
-    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .exercise {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .exercise.reverse {
+        flex-direction: row-reverse;
+      }
+      .video-container {
+        flex: 1;
+        padding: 20px;
+        min-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f0f0f0;
+      }
+      .video-container iframe {
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+        border: none;
+        border-radius: 4px;
+      }
+      .description {
+        flex: 1;
+        padding: 20px;
+      }
+      .description h2 {
+        color: #3498db;
+        margin-top: 0;
+      }
+      .description p {
+        font-size: 16px;
+      }
+      @media (max-width: 768px) {
+        .exercise {
+          flex-direction: column !important;
+        }
+        .video-container {
+          min-height: auto;
+        }
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1>Quelques mouvements à intégrer dans votre quotidien</h1>
+
+      <div class="exercise" id="squat">
+        <div class="video-container">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube-nocookie.com/embed/i2t27muCOG8"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="description">
+          <h2 id="squat-title">Squat</h2>
+          <p id="squat-desc"></p>
+        </div>
+      </div>
+
+      <div class="exercise reverse" id="pompes">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/i2t27muCOG8"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="description">
+          <h2 id="pompes-title">Pompes</h2>
+          <p id="pompes-desc"></p>
+        </div>
+      </div>
+
+      <div class="exercise" id="jumping-jack">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/i2t27muCOG8"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="description">
+          <h2 id="jumping-jack-title">Jumping Jack</h2>
+          <p id="jumping-jack-desc"></p>
+        </div>
+      </div>
+
+      <div class="exercise reverse" id="gainage">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/i2t27muCOG8"
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+        <div class="description">
+          <h2 id="gainage-title">Gainage</h2>
+          <p id="gainage-desc"></p>
+        </div>
+      </div>
+
+      <div class="exercise" id="fentes">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/i2t27muCOG8"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="description">
+          <h2 id="fentes-title">Fentes</h2>
+          <p id="fentes-desc"></p>
+        </div>
+      </div>
+
+      <div class="exercise reverse" id="crunch">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/i2t27muCOG8"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="description">
+          <h2 id="crunch-title">Crunch</h2>
+          <p id="crunch-desc"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const content = {
+        sport1: {
+          title: "Squat",
+          profile: {
+            corpo:
+              "Dos droit, pieds écartés largeur épaules, descendez lentement comme pour vous asseoir sur une chaise, remontez en contractant les cuisses – 4 séries de 12 répétitions avec 30 secondes de repos.",
+            ecolo:
+              "Pieds ancrés au sol comme des racines, descendez lentement en contrôlant la respiration, remontez en explosivité – 4 séries de 15 répétitions pour renforcer les jambes en randonnée.",
+            etudiant:
+              "Entre deux cours, pieds largeur hanches, descendez en poussant les fesses en arrière, remontez vite – 3 séries de 10 répétitions pour décompresser.",
+            fan2tech:
+              "Debout devant votre écran, descendez comme pour vous asseoir sur une chaise imaginaire, remontez – 3 séries de 8 répétitions pour éviter la sédentarité.",
+          },
+        },
+        sport2: {
+          titre: "Pompes",
+          profile: {
+            corpo:
+              "Mains alignées avec les épaules, corps gainé, descendez jusqu’à frôler le sol et remontez sans cambrer le dos – 3 séries de 15 répétitions, repos 20 secondes.",
+            ecolo:
+              "Mains au sol, corps tendu comme une corde, descendez en inspirant et remontez en expirant – 3 séries de 20 répétitions pour un torse solide en plein air.",
+            etudiant:
+              "Sur les genoux si besoin, mains au sol, descendez et remontez sans forcer – 3 séries de 8 répétitions pour garder la forme sans y passer des heures.",
+            fan2tech:
+              "Mains sur le bord de votre bureau, corps incliné, pliez les coudes et poussez – 3 séries de 6 répétitions pour travailler en position assise prolongée.",
+          },
+        },
+        sport3: {
+          titre: "Jumping Jack",
+          profile: {
+            corpo:
+              "Sautez en écartant bras et jambes simultanément, revenez en position initiale – 3 séries de 30 secondes pour dynamiser votre pause déjeuner.",
+            ecolo:
+              "Sautez en écartant bras et jambes comme pour embrasser la nature, enchaînez 1 minute sans pause pour un cœur endurant.",
+            etudiant:
+              "30 secondes de sauts énergiques entre deux révisions pour relancer la circulation et l’énergie.",
+            fan2tech:
+              "20 secondes de sauts légers pour oxygéner le cerveau et relancer la concentration.",
+          },
+        },
+        sport4: {
+          titre: "Gainage",
+          profile: {
+            corpo:
+              "En appui sur les avant-bras, corps aligné, maintenez 45 secondes en respirant profondément – 3 répétitions pour renforcer le tronc.",
+            ecolo:
+              "En équilibre sur les avant-bras, imaginez tenir une planche de surf, maintenez 1 minute – 3 répétitions pour un tronc stable en sentier.",
+            etudiant:
+              "En appui sur les coudes, maintenez 20 secondes en regardant un point fixe – 2 répétitions pour un minimum d’effort, maximum de résultats.",
+            fan2tech:
+              "Assis sur votre chaise, contractez les abdos et maintenez 15 secondes, répétez 3 fois pour un gainage discret.",
+          },
+        },
+        sport5: {
+          titre: "Fentes",
+          profile: {
+            corpo:
+              "Un grand pas en avant, genou arrière presque au sol, remontez en poussant sur le talon – 3 séries de 10 répétitions par jambe, idéal pour équilibrer les heures assises.",
+            ecolo:
+              "Pas large et stable, descendez comme pour escalader une roche, alternez les jambes – 3 séries de 12 répétitions par jambe pour des cuisses puissantes.",
+            etudiant:
+              "Un pas en avant, genou arrière vers le sol, alternez rapidement – 2 séries de 8 répétitions par jambe pour des jambes toniques en un temps record.",
+            fan2tech:
+              "Debout, un pas en arrière, genou frôlant le sol, alternez – 2 séries de 6 répétitions par jambe pour des jambes actives sans quitter votre poste.",
+          },
+        },
+        sport6: {
+          titre: "Crunch",
+          profile: {
+            corpo:
+              "Allongé sur le dos, genoux pliés, soulevez les épaules en contractant les abdos – 3 séries de 20 répétitions pour un ventre tonique.",
+            ecolo:
+              "Allongé, soulevez le buste en expirant comme pour gravir une pente – 3 séries de 25 répétitions pour un ventre prêt à l’effort.",
+            etudiant:
+              "Allongé, soulevez légèrement les épaules en contractant les abdos – 2 séries de 15 répétitions, parfait pour une pause active.",
+            fan2tech:
+              "Assis, penchez-vous légèrement en arrière et contractez les abdos – 2 séries de 10 répétitions pour un ventre tonique sans bouger de votre fauteuil.",
+          },
+        },
+      };
+
+      // Récupère le profil depuis le localStorage ou utilise 'corpo' par défaut
+      const profile = localStorage.getItem("profile") || "corpo";
+
+      // Met à jour le contenu en fonction du profil
+      document.getElementById("squat-title").textContent = content.sport1.title;
+      document.getElementById("squat-desc").textContent =
+        content.sport1.profile[profile];
+
+      document.getElementById("pompes-title").textContent =
+        content.sport2.titre;
+      document.getElementById("pompes-desc").textContent =
+        content.sport2.profile[profile];
+
+      document.getElementById("jumping-jack-title").textContent =
+        content.sport3.titre;
+      document.getElementById("jumping-jack-desc").textContent =
+        content.sport3.profile[profile];
+
+      document.getElementById("gainage-title").textContent =
+        content.sport4.titre;
+      document.getElementById("gainage-desc").textContent =
+        content.sport4.profile[profile];
+
+      document.getElementById("fentes-title").textContent =
+        content.sport5.titre;
+      document.getElementById("fentes-desc").textContent =
+        content.sport5.profile[profile];
+
+      document.getElementById("crunch-title").textContent =
+        content.sport6.titre;
+      document.getElementById("crunch-desc").textContent =
+        content.sport6.profile[profile];
+    </script>
+  </body>
 </html>

@@ -6,7 +6,7 @@ const content = {
       title:
         "Voici la première étape pour reprendre la main sur ta vie numérique",
       subtitle:
-        "Il éxiste de très nombreuse alternantives opensource / libre pour nos outils de tous les jours.",
+        "Il existe de très nombreuses alterntives opensource / libre pour nos outils de tous les jours.",
       text: "On peut citer les logiciels de Framasoft ou Infomaniak. Nous vous recommendons les suivant : ",
       tools: [
         "Word -> FramaPad / LibreOffice",
