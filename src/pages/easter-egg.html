@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Sympa</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #667eea;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        main h1 {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        main>p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+        }
+
+        nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+        }
+
+        nav div {
+            text-decoration: none;
+            background: white;
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        nav div:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        nav div h2 {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 12px;
+        }
+
+        nav div p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* CTA animation for RSE link (subtle bounce) */
+        .rse-cta {
+            display: inline-block;
+            /* allow transforms */
+            transform-origin: center;
+            animation: rse-bounce 1.2s ease-in-out infinite;
+        }
+
+        @keyframes rse-bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-6px);
+            }
+
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* Respect user preference for reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .rse-cta {
+                animation: none !important;
+            }
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            main h1 {
+                font-size: 32px;
+            }
+
+            main>p {
+                font-size: 16px;
+            }
+
+            nav {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-family: 'Courier New'">
+    <main>
+        <h1>Reprenez votre vie en main !</h1>
+        <p style="max-width: 80%;">Nous avons designé ce site avec amour pour vous aidez à reprendre le
+            controle sur votre vie numérique et votre bien-être. Commencez par définir votre profile en répondant au
+            Quiz.</p>
+        <nav>
+            <div>
+                <h2>Quiz</h2>
+                <p>Quel est votre lifestyle?</p>
+            </div>
+            <div>
+                <h2>Sport</h2>
+                <p>Quelques mouvements à intégrer dans votre quotidien !</p>
+            </div>
+            <div>
+                <h2>Guide</h2>
+                <p>Franchissez pas à pas les étapes vers une vie plus souveraine !</p>
+            </div>
+        </nav>
+    </main>
+    <footer>
+        <p>Jetez un coup d'oeil à notre démarche RSE</p>
+        <p>Equipe Super Sympa - NDL 2025</p>
+    </footer>
+    <script>
+        // Falling elements script with transform-based animation
+        // Click any element (p, div, h1, etc.) to make it fall to the bottom of the viewport with a smooth, accelerating animation.
+        (function () {
+            const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function isIgnorable(node) {
+                if (!node || node === document.body || node === document.documentElement) return true;
+                const tag = node.tagName && node.tagName.toLowerCase();
+                if (!tag) return true;
+                if (tag === 'script' || tag === 'style') return true;
+                return false;
+            }
+
+            function makePlaceholder(el, rect) {
+                const ph = document.createElement('div');
+                const cs = window.getComputedStyle(el);
+                ph.style.width = rect.width + 'px';
+                ph.style.height = rect.height + 'px';
+                ph.style.display = cs.display === 'inline' ? 'inline-block' : cs.display;
+                ph.style.visibility = 'hidden';
+                ph.className = 'fall-placeholder';
+                return ph;
+            }
+
+            function onClick(e) {
+                const target = e.target;
+                if (isIgnorable(target)) return;
+                if (target.dataset && target.dataset._isFalling === 'true') return;
+
+
+
+                const rect = target.getBoundingClientRect();
+                const ph = makePlaceholder(target, rect);
+                target.parentNode.insertBefore(ph, target.nextSibling);
+
+                target.dataset._isFalling = 'true';
+                target.dataset._origPosition = target.style.position || '';
+
+                // place element fixed at its current visual position
+                Object.assign(target.style, {
+                    position: 'fixed',
+                    left: rect.left + 'px',
+                    top: rect.top + 'px',
+                    width: rect.width + 'px',
+                    margin: '0',
+                    zIndex: 9999,
+                    transform: 'translateY(0) rotate(0deg)'
+                });
+
+                const finalTop = Math.max(8, window.innerHeight - rect.height - 16);
+                const deltaY = finalTop - rect.top;
+                target.dataset._fallDelta = String(deltaY);
+
+                if (prefersReduced) {
+                    // snap to final position without animation
+                    target.style.top = finalTop + 'px';
+                    setTimeout(() => { target.dataset._isFalling = 'false'; }, 150);
+                    return;
+                }
+
+                // Use transform animations for smoother, GPU-accelerated motion.
+                // Use a cubic-bezier that gives a slight acceleration feel.
+                const fallDuration = 700;
+                const fallTiming = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                target.style.transition = `transform ${fallDuration}ms ${fallTiming}`;
+
+                // Generate random number of spins during fall (1-3 full rotations)
+                const spinsCount = Math.floor(Math.random() * 3) + 1;
+                const fallRotation = spinsCount * 360;
+
+                // start fall on next frame with spinning rotation
+                requestAnimationFrame(() => {
+                    target.style.transform = `translateY(${deltaY}px) rotate(${fallRotation}deg)`;
+                });
+
+                function onFallEnd(ev) {
+                    if (ev.propertyName !== 'transform') return;
+                    target.removeEventListener('transitionend', onFallEnd);
+
+                    // small bounce: move slightly up then settle (no rotation)
+                    const bounceUp = -14;
+                    target.style.transition = 'transform 240ms ease-out';
+                    target.style.transform = `translateY(${deltaY + bounceUp}px)`;
+                    setTimeout(() => {
+                        target.style.transition = 'transform 220ms ease-in-out';
+                        target.style.transform = `translateY(${deltaY}px)`;
+                        setTimeout(() => {
+                            target.dataset._isFalling = 'false';
+                        }, 240);
+                    }, 160);
+
+                    // restore handler: click to bring back
+                    function restore(ev2) {
+                        ev2.stopPropagation();
+                        if (target.dataset._isFalling === 'true') return;
+                        target.dataset._isFalling = 'true';
+
+                        // animate transform back to origin
+                        target.style.transition = `transform ${fallDuration}ms ${fallTiming}`;
+                        target.style.transform = 'translateY(0px) rotate(0deg)';
+
+                        function onReturn(ev3) {
+                            if (ev3.propertyName !== 'transform') return;
+                            target.removeEventListener('transitionend', onReturn);
+                            // restore inline styles
+                            target.style.position = target.dataset._origPosition || '';
+                            target.style.left = '';
+                            target.style.top = '';
+                            target.style.width = '';
+                            target.style.margin = '';
+                            target.style.zIndex = '';
+                            target.style.transition = '';
+                            target.style.transform = '';
+                            if (ph && ph.parentNode) ph.parentNode.removeChild(ph);
+                            target.dataset._isFalling = 'false';
+                            target.removeEventListener('click', restore);
+                        }
+
+                        target.addEventListener('transitionend', onReturn);
+                    }
+
+                    target.addEventListener('click', restore);
+                }
+
+                target.addEventListener('transitionend', onFallEnd);
+            }
+
+            document.addEventListener('click', onClick, true);
+        })();
+
+        // Shotgun laser/shot trace
+        document.addEventListener('DOMContentLoaded', function () {
+            const shotgunImg = document.getElementById('shotgun-img');
+
+            function drawShotTrace(clickX, clickY) {
+                if (!shotgunImg) {
+                    console.log('Shotgun image not found');
+                    return;
+                }
+
+                // Get shotgun position (center horizontally, slightly higher vertically)
+                const shotgunRect = shotgunImg.getBoundingClientRect();
+                const shotgunX = shotgunRect.left + shotgunRect.width / 2;
+                const shotgunY = shotgunRect.top + shotgunRect.height * 0.2; // Start from upper third of the image
+
+                // Create SVG for the line
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.style.position = 'fixed';
+                svg.style.top = '0';
+                svg.style.left = '0';
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                svg.style.pointerEvents = 'none';
+                svg.style.zIndex = '9999';
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', shotgunX);
+                line.setAttribute('y1', shotgunY);
+                line.setAttribute('x2', clickX);
+                line.setAttribute('y2', clickY);
+                line.setAttribute('stroke', 'red');
+                line.setAttribute('stroke-width', '4');
+                line.setAttribute('stroke-linecap', 'round');
+
+                svg.appendChild(line);
+                document.body.appendChild(svg);
+
+                // Fade out and remove
+                let opacity = 1;
+                const fadeInterval = setInterval(() => {
+                    opacity -= 0.08;
+                    if (opacity <= 0) {
+                        clearInterval(fadeInterval);
+                        if (svg.parentNode) svg.parentNode.removeChild(svg);
+                    } else {
+                        svg.style.opacity = String(opacity);
+                    }
+                }, 40);
+            }
+
+            // Listen for clicks to draw the trace
+            document.addEventListener('click', function (e) {
+                drawShotTrace(e.clientX, e.clientY);
+            });
+        })();
+    </script>
+    <style>
+        /* Shotgun image fixed at bottom-center */
+        .shotgun-wrap {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0px;
+            pointer-events: none;
+            /* allow clicks to pass through unless explicitly wanted */
+            z-index: 10000;
+        }
+
+        .shotgun-wrap img {
+            width: 220px;
+            height: auto;
+            display: block;
+            pointer-events: auto;
+            /* allow clicking the image itself */
+            user-select: none;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+            transition: transform 220ms ease;
+        }
+
+        .shotgun-wrap img:active {
+            transform: translateY(3px) scale(0.99);
+        }
+    </style>
+
+    <!-- Shotgun image: tries PNG first, falls back to SVG if PNG is missing -->
+    <div class="shotgun-wrap" aria-hidden="true">
+        <img src="/src/assets/shotgun.png" alt="shotgun" id="shotgun-img">
+    </div>
+</body>
+
+</html>
