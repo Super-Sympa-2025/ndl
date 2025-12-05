@@ -1,5 +1,7 @@
 # SUPER SYMPA - Nuit de l'info 2025
 
+[ndl25.super-sympa.fr](https://ndl25.super-sympa.fr)
+
 Projet de la nuit de l'info 2025 de l'équipe Super Sympa !
 
 On vous souhaite une bonne visite sur notre application et dans ce dépôt.
@@ -14,36 +16,20 @@ Derrière ce site et ce document se cache un groupe d'ami qui n'a pas dormi de l
 
 ## Sommaire
 
-- [Projet](#projet)
-- [Défi Numih France - RSE by design](#défi-numih-france---rse-by-design)
-- [Défi Décathlon - Devenez le CTO de votre santé posturale](#défi-décathlon---devenez-le-cto-de-votre-santé-posturale)
-- [Défi Numérique Essentiel - Le web qui trace, sans trace](#défi-numérique-essentiel---le-web-qui-trace-sans-trace)
-- [Rémerciements](#remerciements)
+- [Le projet, notre volonté](#le-projet-notre-volonté)
+- [Application éthique & durable](#application-éthique--durable)
+- [Adapter notre activité sportive à notre profil numérique](#adapter-notre-activité-sportive-à-notre-profil-numérique)
+- [Un laser game rétro dans le site ??](#un-laser-game-rétro-dans-le-site-)
+- [Lancer le projet en local](#lancer-le-projet-en-local)
+- [Remerciements](#remerciements)
 
-## Projet
-
-### Accéder le projet
-
-Le site est disponible à l'adresse [ndl25.super-sympa.fr](https://ndl25.super-sympa.fr).
-
-Pour le lancer en local (docker requis) :
-
-```sh
-docker build -t ndl-supersympa .
-docker run -d -p 3004:3004 ndl-supersympa
-```
-
-Le site sera alors disponible à l'adresse `localhost:3004`.
-
-### Notre volonté
-
-site lusique avec des exemples pour transfermoer sa vei numérique et en reprendre le controle. ça passe par pleins de changement au niveau hardware et software dans notre usage quotidien, et pour aider les gens à faire ça ona. expliqué dans la partie guide du site toutes les démarches qu'on pense être faisables pour favoriser cette transition
+## Le projet, notre volonté
 
 Nous avons voulu faire une application ludique et illustrée pour transformer sa vie numérique et en reprendre le contrôle.
 
 Cela passe par des changements au niveau hardware et software dans notre usage quotidien. Pour aider les gens dans leur évolution, nous détaillons dans la partie [Guide](https://ndl25.super-sympa.fr/guide) de l'application toutes les démarches qu'on pense être faisables à différents niveaux (de débutant du numérique au nerd ultime).
 
-Aussi, vous pouvez
+Aussi, vous pouvez découvrir quel type de consommateur numérique vous êtes grâce au test de personnalité accessible depuis la page d'accueil.
 
 ## Application éthique & durable
 
@@ -102,6 +88,27 @@ Le site étant développé par des étudiants, et imaginé à destination d'étu
 > Pour l'expérience des évaluateurs, il y a sur la page Sport la possibilité de changer de profil avec un sélecteur.
 
 En plus de la description personnalisées des mouvements, nous avons lié des vidéos démonstratives des exercices. Elles mettent en scène un personnage neutre pour que n'importe qui puisse s'y retrouver ! Ces vidéos montrent le mouvement correctement exécuté, et les erreurs fréquentes pour les éviter.
+
+## Un laser game rétro dans le site ??
+
+Pour des défis, nous avons ajouté un petit easter-egg dans le site, pour en savoir plus, référez-vous au fichier readme.8bit !
+
+## Lancer le projet en local
+
+Le site est disponible à l'adresse [ndl25.super-sympa.fr](https://ndl25.super-sympa.fr).
+
+Pour le lancer en local (docker requis) :
+
+```sh
+git clone https://github.com/Super-Sympa-2025/ndl.git
+# OU
+git clone git@github.com:Super-Sympa-2025/ndl.git
+
+docker build -t ndl-supersympa .
+docker run -d -p 3004:3004 ndl-supersympa
+```
+
+Le site sera alors disponible à l'adresse `localhost:3004`.
 
 ## Remerciements
 
