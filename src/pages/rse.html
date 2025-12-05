@@ -1,68 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos démarches RSE</title>
     <style>
-        .home-link {
-            color: inherit;
-            text-decoration: none;
-            font-weight: 600;
-        }
+      .home-link {
+        color: inherit;
+        text-decoration: none;
+        font-weight: 600;
+      }
 
-        .home-link:hover {
-            text-decoration: underline;
-        }
+      .home-link:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
+  </head>
 
-<body style="font-family: 'Courier New'">
+  <body style="font-family: 'Courier New'">
     <a href="/" class="home-link">Page d'accueil</a>
     <h1>Nos démarches RSE</h1>
-    <p>Vous trouverez détaillé ici toutes les initiatives RSE que nous avons mises en place sur notre site.</p>
-    <h2>Stack technologique</h2>
-    <p>Nous avons choisi d'utiliser des technologies web très légères et performantes. Notre site est principalement
-        construit avec du HTML, CSS et JavaScript vanilla. Nous n'utilisons pas de frameworks lourds qui pourraient
-        alourdir le chargement des pages.</p>
-    <p>De plus, l'utilisation de framework et de librairies n'aurait pas eu lieu d'être étant donné la simplicité de
-        notre application
+    <p>
+      Vous trouverez détaillé ici toutes les initiatives RSE que nous avons
+      mises en place sur notre site.
     </p>
-    <p>Notre code source est actuellement disponible sur le répo suivant : <a
-            href="https://github.com/Super-Sympa-2025/ndl">https://github.com/Super-Sympa-2025/ndl</a></p>
+    <h2>Stack technologique</h2>
+    <p>
+      Nous avons choisi d'utiliser des technologies web très légères et
+      performantes. Notre site est principalement construit avec du HTML, CSS et
+      JavaScript vanilla. Nous n'utilisons pas de frameworks lourds qui
+      pourraient alourdir le chargement des pages.
+    </p>
+    <p>
+      De plus, l'utilisation de framework et de librairies n'aurait pas eu lieu
+      d'être étant donné la simplicité de notre application
+    </p>
+    <p>
+      Notre code source est actuellement disponible sur le répo suivant :
+      <a href="https://github.com/Super-Sympa-2025/ndl"
+        >https://github.com/Super-Sympa-2025/ndl</a
+      >
+    </p>
     <h2>Hébergement</h2>
-    <p>Nous avons choisi d'utiliser Ngnix pour héberger notre site sur notre petit Raspberry pi. En effet, ce serveur
-        est utilisé pour héberger de nombreux projet de la communauté Super Sympa. Cela permet d'avoir une seule
-        machine pour plusieurs projets au lieu d'une nouvelle instance d'un serveur cloud qui utiliserait trop de
-        ressource par rapport au trafic généré par ces sites. Nous pensons donc que cet usage est résonné et s'inscrit
-        dans la démarche RSE de ce site.</p>
+    <p>
+      Nous avons choisi d'utiliser Ngnix pour héberger notre site sur notre
+      petit Raspberry pi. En effet, ce serveur est utilisé pour héberger de
+      nombreux projet de la communauté Super Sympa. Cela permet d'avoir une
+      seule machine pour plusieurs projets au lieu d'une nouvelle instance d'un
+      serveur cloud qui utiliserait trop de ressource par rapport au trafic
+      généré par ces sites. Nous pensons donc que cet usage est résonné et
+      s'inscrit dans la démarche RSE de ce site.
+    </p>
     <h2>Bundle</h2>
-    <p>Aucune de nos pages ne dépasse la limite recommandée de <span style="font-weight: bold;">50 ko</span>. La plupart
-        ne dépassent même pas les 20 ko. Nous
-        avons vraiment axé notre développement en ayant en tête cette problématique. Chaque page de notre application ne
-        fait qu'<span style="font-weight: bold;">une seule requête HTTP</span>. Il n'y a pas de requêtes inutiles, tout
-        est chargé en une seule fois pour plus
-        de performances.</p>
+    <p>
+      Aucune de nos pages ne dépasse la limite recommandée de
+      <span style="font-weight: bold">50 ko</span>. La plupart ne dépassent même
+      pas les 20 ko. Nous avons vraiment axé notre développement en ayant en
+      tête cette problématique. Chaque page de notre application ne fait
+      qu'<span style="font-weight: bold">une seule requête HTTP</span>. Il n'y a
+      pas de requêtes inutiles, tout est chargé en une seule fois pour plus de
+      performances.
+    </p>
     <h2>Assets</h2>
-    <p>Nous n'avons pas utilisé d'assets polices / image / video / audio pour ne faire en sorte d'avoir <span
-            style="font-weight: bold;">la page la plus
-            légère possible</span>. Le CSS a été très utilisé pour donner un aspect plus ludique au site pour qu'il ne
-        ressemble
-        pas à une RFC ;) En revanche nous avons mis en avant le contenu texte de notre site pour avoir un accès direct à
-        l'information (ex: la page <a href="/guide.html">guide</a>).</p>
-    <p><span style="font-weight: bold;">Exception</span> : Dans le cadre du challenge Décathlon, nous avons réalisé des
-        vidéos que nous avons intégrées avec
-        des iframe dans la page <a href="/sport.html">sport</a>. Nous avons pensé aux utilisateurs qui ne
-        souhaiteraient pas afficher les vidéo avec un chargement conditionnel des vidéo Youtube.</p>
-    <p style="font-style: italic;">Nous avons découvert l'aberration d'avoir une iframe youtube, le nombre de requêtes
-        HTTP qui sont générés est vraiment gigantesque! Essayez par vous même en regardant votre console.</p>
+    <p>
+      Nous n'avons pas utilisé d'assets polices / image / video / audio pour ne
+      faire en sorte d'avoir
+      <span style="font-weight: bold">la page la plus légère possible</span>. Le
+      CSS a été très utilisé pour donner un aspect plus ludique au site pour
+      qu'il ne ressemble pas à une RFC ;) En revanche nous avons mis en avant le
+      contenu texte de notre site pour avoir un accès direct à l'information
+      (ex: la page <a href="/guide.html">guide</a>).
+    </p>
+    <p>
+      <span style="font-weight: bold">Exception</span> : Dans le cadre du
+      challenge Décathlon, nous avons réalisé des vidéos que nous avons
+      intégrées avec des iframe dans la page <a href="/sport.html">sport</a>.
+      Nous avons pensé aux utilisateurs qui ne souhaiteraient pas afficher les
+      vidéo avec un chargement conditionnel des vidéo Youtube.
+    </p>
+    <p style="font-style: italic">
+      Nous avons découvert l'aberration d'avoir une iframe youtube, le nombre de
+      requêtes HTTP qui sont générés est vraiment gigantesque! Essayez par vous
+      même en regardant votre console.
+    </p>
     <h2>Accessibilité et Navigation</h2>
-    <p>Nous avons essayé au maximum d'avoir une navigation possible au clavier. Nous avons utilisé l'extension web <span
-            style="font-weight: bold;">Wave</span> pour essayer d'identifier les problèmes d'accessibilité et de les
-        corriger.</p>
-    <p>En revanche la navigation avec des outils comme <span style="font-weight: bold;">Links</span> reste complexe sur
-        les pages où il y a des intégration avec du JavaScript.</p>
-</body>
-
+    <p>
+      Nous avons essayé au maximum d'avoir une navigation possible au clavier.
+      Nous avons utilisé l'extension web
+      <span style="font-weight: bold">Wave</span> pour essayer d'identifier les
+      problèmes d'accessibilité et de les corriger.
+    </p>
+    <p>
+      En revanche la navigation avec des outils comme
+      <span style="font-weight: bold">Links</span> reste complexe sur les pages
+      où il y a des intégration avec du JavaScript.
+    </p>
+  </body>
 </html>
