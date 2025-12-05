@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Roadmap Vie Numérique Libre</title>
     <style>
       :root {
@@ -162,9 +162,7 @@
         Suis ces étapes pour adopter des alternatives libres et opensource.
       </p>
 
-      <div class="roadmap">
-        <!-- Les étapes seront générées dynamiquement en JS -->
-      </div>
+      <div class="roadmap"></div>
     </div>
 
     <script>
@@ -285,7 +283,6 @@
 
         roadmapContainer.appendChild(stepElement);
 
-        // Ajoute une flèche après chaque étape sauf la dernière
         if (key !== "step5") {
           const arrowElement = document.createElement("div");
           arrowElement.className = "arrow";

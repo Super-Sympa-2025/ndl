@@ -1,597 +1,596 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz</title>
+    <style>
+      * {
+        font-family: "Courier New";
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quiz</title>
-  <style>
-    * {
-      font-family: "Courier New";
-    }
+      h2 {
+        padding: 32px;
+        text-align: center;
+        font-size: xx-large;
+      }
 
-    h2 {
-      padding: 32px;
-      text-align: center;
-      font-size: xx-large;
-    }
+      #title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    #title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+      #question {
+        display: flex;
+        flex-direction: column;
+        margin: 0 32px;
+      }
 
-    #question {
-      display: flex;
-      flex-direction: column;
-      margin: 0 32px;
-    }
-
-    #answers {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-    }
-
-    #answers button:nth-child(1) {
-      background-color: red;
-    }
-
-    #answers button:nth-child(2) {
-      background-color: green;
-    }
-
-    #answers button:nth-child(3) {
-      background-color: blue;
-    }
-
-    #answers button:nth-child(4) {
-      background-color: purple;
-    }
-
-    #answers button {
-      padding: 64px;
-      border: solid 2px;
-      color: white;
-      cursor: pointer;
-      border-radius: 8px;
-      font-size: x-large;
-      transition: all 0.3s;
-    }
-
-    #answers button:hover {
-      transform: scale(0.98);
-      opacity: 0.8;
-    }
-
-    #answers button:active {
-      transform: scale(0.95);
-    }
-
-    #description h3 {
-      text-decoration: solid;
-    }
-
-    #description {
-      text-align: center;
-      padding-left: 10rem;
-      padding-right: 10rem;
-      padding-bottom: 4rem;
-    }
-
-    #progress {
-      background-color: lightblue;
-      border-radius: 100%;
-      height: 64px;
-      width: 64px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #categories>div {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 32px;
-      margin: 20px;
-    }
-
-    #categories section {
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-      padding: 16px;
-      background-color: #f8f9fa;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    #categories section h4 {
-      margin: 0 0 8px 0;
-      color: #333;
-      font-size: large;
-    }
-
-    #categories h3 {
-      text-align: center;
-    }
-
-    .category-description {
-      font-size: small;
-      color: #666;
-      margin: 0 0 16px 0;
-      font-style: italic;
-    }
-
-    .progress-bar {
-      position: relative;
-      height: 200px;
-      border: solid 2px #ddd;
-      border-radius: 50px;
-      width: 40px;
-      overflow: hidden;
-      margin: 16px auto;
-      background-color: #e9ecef;
-    }
-
-    .progress-fill {
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      background: linear-gradient(to top, #20c997, #63e6be);
-      transition: height 1.5s cubic-bezier(0.65, 0, 0.35, 1);
-      animation: fillUp 1.5s ease-out forwards;
-    }
-
-    #ecolo .progress-fill {
-      background: linear-gradient(to top, #51cf66, #8ce99a);
-    }
-
-    #corporate .progress-fill {
-      background: linear-gradient(to top, #339af0, #74c0fc);
-    }
-
-    #etudiant .progress-fill {
-      background: linear-gradient(to top, #ff6b6b, #ffa8a8);
-    }
-
-    #tech .progress-fill {
-      background: linear-gradient(to top, #9775fa, #b197fc);
-    }
-
-    .progress-percent {
-      display: block;
-      margin-top: 8px;
-      font-weight: bold;
-      color: #495057;
-      font-size: large;
-    }
-
-    @media (max-width: 700px) {
       #answers {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+
+      #answers button:nth-child(1) {
+        background-color: red;
+      }
+
+      #answers button:nth-child(2) {
+        background-color: green;
+      }
+
+      #answers button:nth-child(3) {
+        background-color: blue;
+      }
+
+      #answers button:nth-child(4) {
+        background-color: purple;
       }
 
       #answers button {
-        padding: 32px;
-      }
-    }
-
-    @keyframes bounceIn {
-      0% {
-        transform: scale(0.8);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes bounce {
-      0% {
-        transform: scale(1);
+        padding: 64px;
+        border: solid 2px;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: x-large;
+        transition: all 0.3s;
       }
 
-      50% {
-        transform: scale(0.97);
+      #answers button:hover {
+        transform: scale(0.98);
+        opacity: 0.8;
       }
 
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes fillUp {
-      from {
-        height: 0;
+      #answers button:active {
+        transform: scale(0.95);
       }
 
-      to {
-        height: var(--progress-height);
-      }
-    }
-
-    h2 {
-      animation: bounceIn 0.5s ease-out, bounce 2s ease-in-out 0.5s infinite;
-    }
-
-    /* Animation pour les barres de progression */
-    #ecolo .progress-fill {
-      --progress-height: 75%;
-    }
-
-    #corporate .progress-fill {
-      --progress-height: 60%;
-    }
-
-    #etudiant .progress-fill {
-      --progress-height: 85%;
-    }
-
-    #fan2tech .progress-fill {
-      --progress-height: 90%;
-    }
-
-    .home-link {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1000;
-      color: inherit;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .home-link:hover {
-      text-decoration: underline;
-    }
-  </style>
-  <script>
-    const quizz = [
-      {
-        theme: "Jeu vidéo préféré",
-        question: "Quel jeu vidéo préférez-vous ?",
-        options: [
-          {
-            type: "corporate",
-            text: "FIFA sur console next-gen, intégré à l’écosystème officiel",
-          },
-          { type: "ecolo", text: "0 A.D., jeu libre et open source" },
-          { type: "etudiant", text: "Fortnite, gratuit et accessible" },
-          {
-            type: "fan2tech",
-            text: "Cyberpunk 2077 avec ray tracing activé",
-          },
-        ],
-      },
-      {
-        theme: "Technologie de conteneurisation",
-        question:
-          "Quelle technologie de conteneurisation vous attire le plus ?",
-        options: [
-          { type: "corporate", text: "AWS ECS / Docker Enterprise" },
-          { type: "ecolo", text: "Podman ou LXC, open source et rootless" },
-          { type: "etudiant", text: "Docker Desktop, simple et répandu" },
-          {
-            type: "fan2tech",
-            text: "Kubernetes avec les dernières features en preview",
-          },
-        ],
-      },
-      {
-        theme: "IA",
-        question: "Quel outil d'IA choisiriez-vous ?",
-        options: [
-          {
-            type: "corporate",
-            text: "Microsoft Copilot ou Google Workspace AI",
-          },
-          { type: "ecolo", text: "LLaMA ou modèles open source locaux" },
-          {
-            type: "etudiant",
-            text: "ChatGPT gratuit ou IA locale si possible",
-          },
-          {
-            type: "fan2tech",
-            text: "Gemini Ultra ou GPT dernière version premium",
-          },
-        ],
-      },
-      {
-        theme: "Logiciel de chat",
-        question: "Quelle application de messagerie utilisez-vous ?",
-        options: [
-          { type: "corporate", text: "Microsoft Teams ou Slack payant" },
-          {
-            type: "ecolo",
-            text: "Signal ou Telegram open source côté client",
-          },
-          { type: "etudiant", text: "WhatsApp car tout le monde y est" },
-          {
-            type: "fan2tech",
-            text: "Instagram et Discord avec toutes les nouveautés",
-          },
-        ],
-      },
-      {
-        theme: "Hardware",
-        question: "Quel matériel préférez-vous ?",
-        options: [
-          { type: "corporate", text: "MacBook Pro dans l’écosystème Apple" },
-          { type: "ecolo", text: "Framework Laptop réparable et durable" },
-          {
-            type: "etudiant",
-            text: "Ordinateur d’occasion ou PC entrée de gamme",
-          },
-          {
-            type: "fan2tech",
-            text: "PC custom avec GPU haut de gamme + smartphone pliable",
-          },
-        ],
-      },
-      {
-        theme: "Hébergeur",
-        question: "Quel hébergeur choisiriez-vous ?",
-        options: [
-          { type: "corporate", text: "AWS ou Azure" },
-          { type: "ecolo", text: "OVHcloud ou Scaleway" },
-          { type: "etudiant", text: "Netlify ou GitHub Pages" },
-          {
-            type: "fan2tech",
-            text: "Google Cloud avec fonctionnalités bêta",
-          },
-        ],
-      },
-      {
-        theme: "IDE",
-        question: "Quel IDE préférez-vous ?",
-        options: [
-          { type: "corporate", text: "JetBrains (IntelliJ, PyCharm...)" },
-          { type: "ecolo", text: "VSCodium ou Vim" },
-          { type: "etudiant", text: "VS Code" },
-          { type: "fan2tech", text: "Cursor, Zed ou IDE boosté à l’IA" },
-        ],
-      },
-      {
-        theme: "OS",
-        question: "Quel système d’exploitation utilisez-vous ?",
-        options: [
-          { type: "corporate", text: "Windows 11 Enterprise ou macOS" },
-          { type: "ecolo", text: "Linux Debian ou Ubuntu" },
-          {
-            type: "etudiant",
-            text: "Dual-boot Windows/Linux selon les besoins",
-          },
-          { type: "fan2tech", text: "macOS Sonoma ou Windows Insider" },
-        ],
-      },
-    ];
-
-    let quizzIndex = 0;
-
-    let corporate = 0;
-    let ecolo = 0;
-    let etudiant = 0;
-    let fan2tech = 0;
-
-    function randomizeOrder() {
-      for (let i = quizz.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [quizz[i], quizz[j]] = [quizz[j], quizz[i]];
+      #description h3 {
+        text-decoration: solid;
       }
 
-      quizz.forEach((question) => {
-        for (let i = question.options.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [question.options[i], question.options[j]] = [
-            question.options[j],
-            question.options[i],
-          ];
+      #description {
+        text-align: center;
+        padding-left: 10rem;
+        padding-right: 10rem;
+        padding-bottom: 4rem;
+      }
+
+      #progress {
+        background-color: lightblue;
+        border-radius: 100%;
+        height: 64px;
+        width: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #categories > div {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 32px;
+        margin: 20px;
+      }
+
+      #categories section {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        padding: 16px;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      #categories section h4 {
+        margin: 0 0 8px 0;
+        color: #333;
+        font-size: large;
+      }
+
+      #categories h3 {
+        text-align: center;
+      }
+
+      .category-description {
+        font-size: small;
+        color: #666;
+        margin: 0 0 16px 0;
+        font-style: italic;
+      }
+
+      .progress-bar {
+        position: relative;
+        height: 200px;
+        border: solid 2px #ddd;
+        border-radius: 50px;
+        width: 40px;
+        overflow: hidden;
+        margin: 16px auto;
+        background-color: #e9ecef;
+      }
+
+      .progress-fill {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(to top, #20c997, #63e6be);
+        transition: height 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        animation: fillUp 1.5s ease-out forwards;
+      }
+
+      #ecolo .progress-fill {
+        background: linear-gradient(to top, #51cf66, #8ce99a);
+      }
+
+      #corporate .progress-fill {
+        background: linear-gradient(to top, #339af0, #74c0fc);
+      }
+
+      #etudiant .progress-fill {
+        background: linear-gradient(to top, #ff6b6b, #ffa8a8);
+      }
+
+      #tech .progress-fill {
+        background: linear-gradient(to top, #9775fa, #b197fc);
+      }
+
+      .progress-percent {
+        display: block;
+        margin-top: 8px;
+        font-weight: bold;
+        color: #495057;
+        font-size: large;
+      }
+
+      @media (max-width: 700px) {
+        #answers {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(4, 1fr);
         }
-      });
-    }
 
-    function incrementCounter() {
-      document.querySelector("#progress").innerText =
-        quizzIndex + 1 + " / " + quizz.length;
-    }
-
-    function renderQuestion(index) {
-      const questionNode = document.querySelector("#question h2");
-      questionNode.innerText = quizz[index].question;
-
-      const responsesNodes = document.querySelectorAll("#answers button");
-      const options = quizz[index].options;
-
-      responsesNodes.forEach((element, i) => {
-        element.innerText = options[i].text;
-        element.onclick = () => answer(i);
-      });
-    }
-
-    function answer(responseIndex) {
-      const options = quizz[quizzIndex].options;
-      const selected = options[responseIndex];
-
-      switch (selected.type) {
-        case "corporate":
-          corporate++;
-          break;
-        case "ecolo":
-          ecolo++;
-          break;
-        case "etudiant":
-          etudiant++;
-          break;
-        case "fan2tech":
-          fan2tech++;
-          break;
-        default:
-          break;
+        #answers button {
+          padding: 32px;
+        }
       }
 
-      quizzIndex++;
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0.8);
+        }
 
-      if (quizzIndex < quizz.length) {
-        renderQuestion(quizzIndex);
-        incrementCounter();
-      } else {
-        const scores = [
-          {
-            title: "corporate",
-            displayTitle: "Corporate",
-            value: corporate,
-            description: `
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(0.97);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fillUp {
+        from {
+          height: 0;
+        }
+
+        to {
+          height: var(--progress-height);
+        }
+      }
+
+      h2 {
+        animation: bounceIn 0.5s ease-out, bounce 2s ease-in-out 0.5s infinite;
+      }
+
+      #ecolo .progress-fill {
+        --progress-height: 75%;
+      }
+
+      #corporate .progress-fill {
+        --progress-height: 60%;
+      }
+
+      #etudiant .progress-fill {
+        --progress-height: 85%;
+      }
+
+      #fan2tech .progress-fill {
+        --progress-height: 90%;
+      }
+
+      .home-link {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        color: inherit;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .home-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <script>
+      const quizz = [
+        {
+          theme: "Jeu vidéo préféré",
+          question: "Quel jeu vidéo préférez-vous ?",
+          options: [
+            {
+              type: "corporate",
+              text: "FIFA sur console next-gen, intégré à l’écosystème officiel",
+            },
+            { type: "ecolo", text: "0 A.D., jeu libre et open source" },
+            { type: "etudiant", text: "Fortnite, gratuit et accessible" },
+            {
+              type: "fan2tech",
+              text: "Cyberpunk 2077 avec ray tracing activé",
+            },
+          ],
+        },
+        {
+          theme: "Technologie de conteneurisation",
+          question:
+            "Quelle technologie de conteneurisation vous attire le plus ?",
+          options: [
+            { type: "corporate", text: "AWS ECS / Docker Enterprise" },
+            { type: "ecolo", text: "Podman ou LXC, open source et rootless" },
+            { type: "etudiant", text: "Docker Desktop, simple et répandu" },
+            {
+              type: "fan2tech",
+              text: "Kubernetes avec les dernières features en preview",
+            },
+          ],
+        },
+        {
+          theme: "IA",
+          question: "Quel outil d'IA choisiriez-vous ?",
+          options: [
+            {
+              type: "corporate",
+              text: "Microsoft Copilot ou Google Workspace AI",
+            },
+            { type: "ecolo", text: "LLaMA ou modèles open source locaux" },
+            {
+              type: "etudiant",
+              text: "ChatGPT gratuit ou IA locale si possible",
+            },
+            {
+              type: "fan2tech",
+              text: "Gemini Ultra ou GPT dernière version premium",
+            },
+          ],
+        },
+        {
+          theme: "Logiciel de chat",
+          question: "Quelle application de messagerie utilisez-vous ?",
+          options: [
+            { type: "corporate", text: "Microsoft Teams ou Slack payant" },
+            {
+              type: "ecolo",
+              text: "Signal ou Telegram open source côté client",
+            },
+            { type: "etudiant", text: "WhatsApp car tout le monde y est" },
+            {
+              type: "fan2tech",
+              text: "Instagram et Discord avec toutes les nouveautés",
+            },
+          ],
+        },
+        {
+          theme: "Hardware",
+          question: "Quel matériel préférez-vous ?",
+          options: [
+            { type: "corporate", text: "MacBook Pro dans l’écosystème Apple" },
+            { type: "ecolo", text: "Framework Laptop réparable et durable" },
+            {
+              type: "etudiant",
+              text: "Ordinateur d’occasion ou PC entrée de gamme",
+            },
+            {
+              type: "fan2tech",
+              text: "PC custom avec GPU haut de gamme + smartphone pliable",
+            },
+          ],
+        },
+        {
+          theme: "Hébergeur",
+          question: "Quel hébergeur choisiriez-vous ?",
+          options: [
+            { type: "corporate", text: "AWS ou Azure" },
+            { type: "ecolo", text: "OVHcloud ou Scaleway" },
+            { type: "etudiant", text: "Netlify ou GitHub Pages" },
+            {
+              type: "fan2tech",
+              text: "Google Cloud avec fonctionnalités bêta",
+            },
+          ],
+        },
+        {
+          theme: "IDE",
+          question: "Quel IDE préférez-vous ?",
+          options: [
+            { type: "corporate", text: "JetBrains (IntelliJ, PyCharm...)" },
+            { type: "ecolo", text: "VSCodium ou Vim" },
+            { type: "etudiant", text: "VS Code" },
+            { type: "fan2tech", text: "Cursor, Zed ou IDE boosté à l’IA" },
+          ],
+        },
+        {
+          theme: "OS",
+          question: "Quel système d’exploitation utilisez-vous ?",
+          options: [
+            { type: "corporate", text: "Windows 11 Enterprise ou macOS" },
+            { type: "ecolo", text: "Linux Debian ou Ubuntu" },
+            {
+              type: "etudiant",
+              text: "Dual-boot Windows/Linux selon les besoins",
+            },
+            { type: "fan2tech", text: "macOS Sonoma ou Windows Insider" },
+          ],
+        },
+      ];
+
+      let quizzIndex = 0;
+
+      let corporate = 0;
+      let ecolo = 0;
+      let etudiant = 0;
+      let fan2tech = 0;
+
+      function randomizeOrder() {
+        for (let i = quizz.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [quizz[i], quizz[j]] = [quizz[j], quizz[i]];
+        }
+
+        quizz.forEach((question) => {
+          for (let i = question.options.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [question.options[i], question.options[j]] = [
+              question.options[j],
+              question.options[i],
+            ];
+          }
+        });
+      }
+
+      function incrementCounter() {
+        document.querySelector("#progress").innerText =
+          quizzIndex + 1 + " / " + quizz.length;
+      }
+
+      function renderQuestion(index) {
+        const questionNode = document.querySelector("#question h2");
+        questionNode.innerText = quizz[index].question;
+
+        const responsesNodes = document.querySelectorAll("#answers button");
+        const options = quizz[index].options;
+
+        responsesNodes.forEach((element, i) => {
+          element.innerText = options[i].text;
+          element.onclick = () => answer(i);
+        });
+      }
+
+      function answer(responseIndex) {
+        const options = quizz[quizzIndex].options;
+        const selected = options[responseIndex];
+
+        switch (selected.type) {
+          case "corporate":
+            corporate++;
+            break;
+          case "ecolo":
+            ecolo++;
+            break;
+          case "etudiant":
+            etudiant++;
+            break;
+          case "fan2tech":
+            fan2tech++;
+            break;
+          default:
+            break;
+        }
+
+        quizzIndex++;
+
+        if (quizzIndex < quizz.length) {
+          renderQuestion(quizzIndex);
+          incrementCounter();
+        } else {
+          const scores = [
+            {
+              title: "corporate",
+              displayTitle: "Corporate",
+              value: corporate,
+              description: `
                 Vous recherchez avant tout la stabilité et les solutions clés en main, même si elles sont
                 propriétaires et parfois moins optimisées pour l’environnement. Votre vision du durable reste
                 pragmatique : améliorer l’efficacité sans changer vos habitudes ni remettre en cause les outils
                 que vous maîtrisez déjà.
               `,
-          },
-          {
-            title: "ecolo",
-            displayTitle: "Écolo",
-            value: ecolo,
-            description: `
+            },
+            {
+              title: "ecolo",
+              displayTitle: "Écolo",
+              value: ecolo,
+              description: `
                 Vous êtes attentif à l’impact environnemental et aux choix numériques responsables. Vous préférez
                 les outils sobres, durables et respectueux des ressources, quitte à sortir des solutions
                 traditionnelles pour aller vers quelque chose de plus vertueux.
               `,
-          },
-          {
-            title: "etudiant",
-            displayTitle: "Étudiant",
-            value: etudiant,
-            description: `
+            },
+            {
+              title: "etudiant",
+              displayTitle: "Étudiant",
+              value: etudiant,
+              description: `
                 Vous aimez les outils simples, accessibles et peu gourmands. Votre approche du numérique durable
                 passe par la réutilisation, la légèreté et le fait de tirer le meilleur du matériel que vous avez
                 déjà, sans chercher à surconsommer.
               `,
-          },
-          {
-            title: "fan2tech",
-            displayTitle: "Fan de technologie",
-            value: fan2tech,
-            description: `
+            },
+            {
+              title: "fan2tech",
+              displayTitle: "Fan de technologie",
+              value: fan2tech,
+              description: `
                 Vous êtes attiré par les technologies propriétaires dernier cri, souvent puissantes mais parfois
                 énergivores. Pour vous, le développement durable est surtout une opportunité d’innovation, même si
                 vous privilégiez encore les performances et les nouveautés avant la sobriété.
               `,
-          },
-        ];
+            },
+          ];
 
-        const bestType = scores.reduce((a, b) => (a.value > b.value ? a : b));
+          const bestType = scores.reduce((a, b) => (a.value > b.value ? a : b));
 
-        localStorage.setItem("profile", bestType.title);
+          localStorage.setItem("profile", bestType.title);
 
-        showResults(scores, bestType);
+          showResults(scores, bestType);
+        }
       }
-    }
 
-    function showResults(scores, bestType) {
-      document.querySelector("#question").style.display = "none";
-      document.querySelector("#results").style.display = "";
+      function showResults(scores, bestType) {
+        document.querySelector("#question").style.display = "none";
+        document.querySelector("#results").style.display = "";
 
-      const total = scores.reduce((sum, s) => sum + s.value, 0);
-      document.querySelector("#description h3").innerText =
-        bestType.displayTitle;
-      document.querySelector("#description p").innerText =
-        bestType.description;
+        const total = scores.reduce((sum, s) => sum + s.value, 0);
+        document.querySelector("#description h3").innerText =
+          bestType.displayTitle;
+        document.querySelector("#description p").innerText =
+          bestType.description;
 
-      scores.forEach((score) => {
-        const percent =
-          total === 0 ? 0 : Math.round((score.value / total) * 100);
+        scores.forEach((score) => {
+          const percent =
+            total === 0 ? 0 : Math.round((score.value / total) * 100);
 
-        const section = document.querySelector(`#${score.title}`);
-        const fill = section.querySelector(".progress-fill");
-        const textPercent = section.querySelector(".progress-percent");
+          const section = document.querySelector(`#${score.title}`);
+          const fill = section.querySelector(".progress-fill");
+          const textPercent = section.querySelector(".progress-percent");
 
-        fill.style.setProperty("--progress-height", percent + "%");
+          fill.style.setProperty("--progress-height", percent + "%");
 
-        textPercent.innerText = percent + "%";
+          textPercent.innerText = percent + "%";
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("#results").style.display = "none";
+
+        randomizeOrder();
+        incrementCounter();
+        renderQuestion(quizzIndex);
       });
-    }
+    </script>
+  </head>
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelector("#results").style.display = "none";
-
-      randomizeOrder();
-      incrementCounter();
-      renderQuestion(quizzIndex);
-    });
-  </script>
-</head>
-
-<body>
-
-  <a href="/" class="home-link">Page d'accueil</a>
-  <section id="title">
-    <h1>Quiz</h1>
-    <p>Apprenez-en plus sur votre vie</p>
-    <p id="progress">0/8</p>
-  </section>
-  <section id="question">
-    <h2>Question ?</h2>
-    <div id="answers">
-      <button>Réponse 1</button>
-      <button>Réponse 2</button>
-      <button>Réponse 3</button>
-      <button>Réponse 4</button>
-    </div>
-  </section>
-  <section id="results">
-    <h2>Résultats</h2>
-    <section id="description">
-      <h3>Catégorie</h3>
-      <p>Description de la catégorie</p>
-      <a href="/sport">Voir les activitées sportives recommandées en fonction de votre catégorie</a>
+  <body>
+    <a href="/" class="home-link">Page d'accueil</a>
+    <section id="title">
+      <h1>Quiz</h1>
+      <p>Apprenez-en plus sur votre vie</p>
+      <p id="progress">0/8</p>
     </section>
-    <section id="categories">
-      <h3>Catégories</h3>
-      <div>
-        <section id="ecolo">
-          <h4>Écolo</h4>
-          <p class="category-description">
-            Vous êtes soucieux de l'environnement
-          </p>
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-percent">0%</span>
-        </section>
-        <section id="corporate">
-          <h4>Corporate</h4>
-          <p class="category-description">
-            Vous aimez le monde de l'entreprise
-          </p>
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-percent">0%</span>
-        </section>
-        <section id="etudiant">
-          <h4>Étudiant</h4>
-          <p class="category-description">Vous avez un esprit étudiant</p>
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-percent">0%</span>
-        </section>
-        <section id="fan2tech">
-          <h4>Fan de tech</h4>
-          <p class="category-description">Vous adorez la technologie</p>
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-          <span class="progress-percent">0%</span>
-        </section>
+    <section id="question">
+      <h2>Question ?</h2>
+      <div id="answers">
+        <button>Réponse 1</button>
+        <button>Réponse 2</button>
+        <button>Réponse 3</button>
+        <button>Réponse 4</button>
       </div>
     </section>
-  </section>
-</body>
-
+    <section id="results">
+      <h2>Résultats</h2>
+      <section id="description">
+        <h3>Catégorie</h3>
+        <p>Description de la catégorie</p>
+        <a href="/sport"
+          >Voir les activitées sportives recommandées en fonction de votre
+          catégorie</a
+        >
+      </section>
+      <section id="categories">
+        <h3>Catégories</h3>
+        <div>
+          <section id="ecolo">
+            <h4>Écolo</h4>
+            <p class="category-description">
+              Vous êtes soucieux de l'environnement
+            </p>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <span class="progress-percent">0%</span>
+          </section>
+          <section id="corporate">
+            <h4>Corporate</h4>
+            <p class="category-description">
+              Vous aimez le monde de l'entreprise
+            </p>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <span class="progress-percent">0%</span>
+          </section>
+          <section id="etudiant">
+            <h4>Étudiant</h4>
+            <p class="category-description">Vous avez un esprit étudiant</p>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <span class="progress-percent">0%</span>
+          </section>
+          <section id="fan2tech">
+            <h4>Fan de tech</h4>
+            <p class="category-description">Vous adorez la technologie</p>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <span class="progress-percent">0%</span>
+          </section>
+        </div>
+      </section>
+    </section>
+  </body>
 </html>

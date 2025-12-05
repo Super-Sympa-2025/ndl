@@ -84,7 +84,6 @@ Le site étant développé par des étudiants, et imaginé à destination d'étu
 - **Étudiant**, il n'a pas de temps à cause de ses révisions et de son emploi du temps chargé. Il veut tout de même trouver du temps pour s'entretenir et s'entraîner régulièrement.
 - **Fan de tech**, il reste souvent à son bureau à développer, se documenter ou expérimenter. Pour qu'il se maintienne en forme, nous lui proposons des séries d'exercices qu'il peut faire depuis sa chaise entre deux téléchargements.
 
-> [!NOTE]
 > Pour l'expérience des évaluateurs, il y a sur la page Sport la possibilité de changer de profil avec un sélecteur.
 
 En plus de la description personnalisées des mouvements, nous avons lié des vidéos démonstratives des exercices. Elles mettent en scène un personnage neutre pour que n'importe qui puisse s'y retrouver ! Ces vidéos montrent le mouvement correctement exécuté, et les erreurs fréquentes pour les éviter.
