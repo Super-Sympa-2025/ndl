@@ -7,14 +7,59 @@
   <body>
     <h1>Quiz</h1>
     <p>Apprenez-en plus sur votre vie</p>
+    <p id="progress">1/10</p>
     <section id="question">
       <h2>Quel logiicel utiliez vous pour faire des vidéos et photos top ?</h2>
       <div id="answers">
-        <button class="answer" id="answer1">Réponse 1</button>
-        <button class="answer" id="answer2">Réponse 2</button>
-        <button class="answer" id="answer3">Réponse 3</button>
-        <button class="answer" id="answer4">Réponse 4</button>
+        <button id="answer1">Réponse 1</button>
+        <button id="answer2">Réponse 2</button>
+        <button id="answer3">Réponse 3</button>
+        <button id="answer4">Réponse 4</button>
       </div>
+    </section>
+    <section id="results">
+      <h2>Résultats</h2>
+      <section id="categories">
+        <h3>Catégories</h3>
+        <div>
+          <section id="ecolo">
+            <h4>Écolo</h4>
+            <p class="category-description">
+              Vous êtes soucieux de l'environnement
+            </p>
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="75"></div>
+            </div>
+            <span class="progress-percent">75%</span>
+          </section>
+          <section id="corporate">
+            <h4>Corporate</h4>
+            <p class="category-description">
+              Vous aimez le monde de l'entreprise
+            </p>
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="60"></div>
+            </div>
+            <span class="progress-percent">60%</span>
+          </section>
+          <section id="etudiant">
+            <h4>Étudiant</h4>
+            <p class="category-description">Vous avez un esprit estudiantin</p>
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="85"></div>
+            </div>
+            <span class="progress-percent">85%</span>
+          </section>
+          <section id="tech">
+            <h4>Fan de tech</h4>
+            <p class="category-description">Vous adorez la technologie</p>
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="90"></div>
+            </div>
+            <span class="progress-percent">90%</span>
+          </section>
+        </div>
+      </section>
     </section>
   </body>
 </html>
