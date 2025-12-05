@@ -341,7 +341,7 @@
       const toggle = document.getElementById('load-videos-toggle');
       const iframes = Array.from(document.querySelectorAll('.lazy-iframe'));
 
-      const enabled = localStorage.getItem('videosEnabled') === 'true';
+      const enabled = localStorage.getItem('assetsEnable') === 'true';
 
       toggle.checked = enabled;
 
@@ -364,7 +364,7 @@
       });
 
       toggle.addEventListener('change', (e) => {
-        localStorage.setItem('videosEnabled', e.target.checked ? 'true' : 'false');
+        localStorage.setItem('assetsEnable', e.target.checked ? 'true' : 'false');
         location.reload();
       });
     });
