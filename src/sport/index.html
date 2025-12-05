@@ -2,9 +2,9 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Restez en mouvement</title>
   <style>
     body {
@@ -28,11 +28,17 @@
     }
 
     .video-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
       display: flex;
       align-items: center;
       gap: 12px;
-      justify-content: center;
-      margin-bottom: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     }
 
     .video-toggle label {
@@ -70,6 +76,7 @@
       align-items: center;
       background: #f0f0f0;
       position: relative;
+      cursor: pointer;
     }
 
     /* iframe cachée tant que non chargée */
@@ -94,6 +101,12 @@
       font-size: 14px;
     }
 
+    /* focus visible pour navigation clavier */
+    .video-container:focus {
+      outline: 3px solid #3498db;
+      outline-offset: 4px;
+    }
+
     .description {
       flex: 1;
       padding: 20px;
@@ -116,6 +129,14 @@
       .video-container {
         min-height: auto;
       }
+
+      /* Ajuste la position du toggle sur petits écrans */
+      .video-toggle {
+        top: 12px;
+        right: 12px;
+        padding: 6px 8px;
+        gap: 8px;
+      }
     }
   </style>
 </head>
@@ -127,16 +148,15 @@
     <!-- Toggle pour charger/afficher les vidéos -->
     <div class="video-toggle">
       <label>
-        <input type="checkbox" id="load-videos-toggle" />
-        Charger les vidéos
+        <input type="checkbox" id="load-videos-toggle">
+        Charger les videos
       </label>
     </div>
 
     <div class="exercise" id="squat">
-      <div class="video-container" data-loaded="false">
-        <!-- data-src contient l'URL, src n'est pas défini par défaut -->
-        <iframe class="lazy-iframe" width="560" height="315"
-          data-src="https://www.youtube-nocookie.com/embed/i2t27muCOG8" frameborder="0" allowfullscreen></iframe>
+      <div class="video-container" data-loaded="false" tabindex="0" role="button"
+        aria-label="Charger la vidéo du Squat">
+        <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/i2t27muCOG8" allowfullscreen></iframe>
         <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
       </div>
       <div class="description">
@@ -146,7 +166,8 @@
     </div>
 
     <div class="exercise reverse" id="pompes">
-      <div class="video-container" data-loaded="false">
+      <div class="video-container" data-loaded="false" tabindex="0" role="button"
+        aria-label="Charger la vidéo des Pompes">
         <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/i2t27muCOG8" allowfullscreen></iframe>
         <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
       </div>
@@ -157,7 +178,8 @@
     </div>
 
     <div class="exercise" id="jumping-jack">
-      <div class="video-container" data-loaded="false">
+      <div class="video-container" data-loaded="false" tabindex="0" role="button"
+        aria-label="Charger la vidéo du Jumping Jack">
         <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/i2t27muCOG8" allowfullscreen></iframe>
         <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
       </div>
@@ -168,7 +190,8 @@
     </div>
 
     <div class="exercise reverse" id="gainage">
-      <div class="video-container" data-loaded="false">
+      <div class="video-container" data-loaded="false" tabindex="0" role="button"
+        aria-label="Charger la vidéo du Gainage">
         <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/i2t27muCOG8" allowfullscreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
@@ -180,7 +203,8 @@
     </div>
 
     <div class="exercise" id="fentes">
-      <div class="video-container" data-loaded="false">
+      <div class="video-container" data-loaded="false" tabindex="0" role="button"
+        aria-label="Charger la vidéo des Fentes">
         <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/i2t27muCOG8" allowfullscreen></iframe>
         <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
       </div>
@@ -191,7 +215,8 @@
     </div>
 
     <div class="exercise reverse" id="crunch">
-      <div class="video-container" data-loaded="false">
+      <div class="video-container" data-loaded="false" tabindex="0" role="button"
+        aria-label="Charger la vidéo du Crunch">
         <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/i2t27muCOG8" allowfullscreen></iframe>
         <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
       </div>
