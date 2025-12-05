@@ -15,6 +15,12 @@
         font-size: xx-large;
       }
 
+      #title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       #question {
         display: flex;
         flex-direction: column;
@@ -501,9 +507,11 @@
     </script>
   </head>
   <body>
-    <h1>Quiz</h1>
-    <p>Apprenez-en plus sur votre vie</p>
-    <p id="progress">0/8</p>
+    <section id="title">
+      <h1>Quiz</h1>
+      <p>Apprenez-en plus sur votre vie</p>
+      <p id="progress">0/8</p>
+    </section>
     <section id="question">
       <h2>Question ?</h2>
       <div id="answers">
