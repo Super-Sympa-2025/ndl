@@ -138,12 +138,34 @@
         gap: 8px;
       }
     }
+
+    .home-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .home-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
 <body>
+
+  <a href="/" class="home-link">Page d'accueil</a>
   <div class="container">
     <h1>Quelques mouvements à intégrer dans votre quotidien</h1>
+    <p style="text-align: center;">Les instructions ont été personnalisées en fonction du profil issu du quiz. Si vous
+      ne l'avez pas fait, il est
+      encore temps de le faire <a href="quiz">ici</a>!</p>
+
+    <p style="text-align: center;">Pour rappel, vous êtes actuellement : <span style="font-weight: bold;"
+        id="user-profile"></span></p>
 
     <!-- Toggle pour charger/afficher les vidéos -->
     <div class="video-toggle">
@@ -163,50 +185,50 @@
         <p id="crunch-desc"></p>
       </div>
     </div>
-  </div>
 
-  <div class="exercise" id="squat">
-    <div class="video-container" data-loaded="false" tabindex="0">
-      <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/4u-LC3xcZq8" allowfullscreen></iframe>
-      <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+    <div class="exercise" id="squat">
+      <div class="video-container" data-loaded="false" tabindex="0">
+        <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/4u-LC3xcZq8" allowfullscreen></iframe>
+        <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+      </div>
+      <div class="description">
+        <h2 id="squat-title">Squat</h2>
+        <p id="squat-desc"></p>
+      </div>
     </div>
-    <div class="description">
-      <h2 id="squat-title">Squat</h2>
-      <p id="squat-desc"></p>
-    </div>
-  </div>
 
-  <div class="exercise reverse" id="pompes">
-    <div class="video-container" data-loaded="false" tabindex="0">
-      <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/gyx9M-WaS60" allowfullscreen></iframe>
-      <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+    <div class="exercise reverse" id="pompes">
+      <div class="video-container" data-loaded="false" tabindex="0">
+        <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/gyx9M-WaS60" allowfullscreen></iframe>
+        <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+      </div>
+      <div class="description">
+        <h2 id="pompes-title">Pompes</h2>
+        <p id="pompes-desc"></p>
+      </div>
     </div>
-    <div class="description">
-      <h2 id="pompes-title">Pompes</h2>
-      <p id="pompes-desc"></p>
-    </div>
-  </div>
 
-  <div class="exercise" id="fentes">
-    <div class="video-container" data-loaded="false" tabindex="0">
-      <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/qaouAZUTAJk" allowfullscreen></iframe>
-      <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+    <div class="exercise" id="fentes">
+      <div class="video-container" data-loaded="false" tabindex="0">
+        <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/qaouAZUTAJk" allowfullscreen></iframe>
+        <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+      </div>
+      <div class="description">
+        <h2 id="fentes-title">Fentes</h2>
+        <p id="fentes-desc"></p>
+      </div>
     </div>
-    <div class="description">
-      <h2 id="fentes-title">Fentes</h2>
-      <p id="fentes-desc"></p>
-    </div>
-  </div>
 
-  <div class="exercise reverse" id="gainage">
-    <div class="video-container" data-loaded="false" tabindex="0">
-      <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/NNUjUdtMhrs" allowfullscreen
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-      <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
-    </div>
-    <div class="description">
-      <h2 id="gainage-title">Gainage</h2>
-      <p id="gainage-desc"></p>
+    <div class="exercise reverse" id="gainage">
+      <div class="video-container" data-loaded="false" tabindex="0">
+        <iframe class="lazy-iframe" data-src="https://www.youtube.com/embed/NNUjUdtMhrs" allowfullscreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        <div class="video-placeholder">Vidéos désactivées · activez le toggle pour charger</div>
+      </div>
+      <div class="description">
+        <h2 id="gainage-title">Gainage</h2>
+        <p id="gainage-desc"></p>
+      </div>
     </div>
   </div>
 
@@ -280,8 +302,9 @@
     };
 
     // Récupère le profil depuis le localStorage ou utilise 'corpo' par défaut
-    localStorage.setItem("profile", "ecolo");
-    const profile = localStorage.getItem("profile") || "corpo";
+    const profile = localStorage.getItem("profile") || "etudiant";
+
+    document.getElementById("user-profile").textContent = profile;
 
     // Met à jour le contenu en fonction du profil
     document.getElementById("squat-title").textContent = content.sport1.title;

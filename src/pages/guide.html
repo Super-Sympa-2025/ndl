@@ -136,10 +136,25 @@
     .step:last-child~.arrow {
       display: none;
     }
+
+    .home-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .home-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
 <body>
+  <a href="/" class="home-link">Page d'accueil</a>
   <div class="container">
     <h1 aria-label="Roadmap : Reprends le contrôle de ta vie numérique">Roadmap : Reprends le contrôle de ta vie
       numérique</h1>
